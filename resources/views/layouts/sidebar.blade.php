@@ -57,7 +57,7 @@
                             @endcan
                             @can('view-any', App\Models\Properties::class)
                                 <li class="nav-item">
-                                    <a href="{{ route('all-properties.index') }}" class="nav-link">
+                                    <a href="{{ route('properties.index') }}" class="nav-link">
                                         <i class="nav-icon icon ion-md-radio-button-off"></i>
                                         <p>Properties</p>
                                     </a>
@@ -92,7 +92,7 @@
                         <ul class="nav nav-treeview">
                             @can('view-any', App\Models\Properties::class)
                                 <li class="nav-item">
-                                    <a href="{{ route('all-properties.index') }}" class="nav-link">
+                                    <a href="{{ route('properties.index') }}" class="nav-link">
                                         <i class="nav-icon icon ion-md-radio-button-off"></i>
                                         <p>Properties</p>
                                     </a>
@@ -137,7 +137,7 @@
                         <ul class="nav nav-treeview">
                             @can('view-any', App\Models\Properties::class)
                                 <li class="nav-item">
-                                    <a href="{{ route('all-properties.index') }}" class="nav-link">
+                                    <a href="{{ route('properties.index') }}" class="nav-link">
                                         <i class="nav-icon icon ion-md-radio-button-off"></i>
                                         <p>Properties</p>
                                     </a>
@@ -183,7 +183,7 @@
 
                             @can('view-any', App\Models\Properties::class)
                                 <li class="nav-item">
-                                    <a href="{{ route('all-properties.index') }}" class="nav-link">
+                                    <a href="{{ route('properties.index') }}" class="nav-link">
                                         <i class="nav-icon icon ion-md-radio-button-off"></i>
                                         <p>Properties</p>
                                     </a>
@@ -203,7 +203,7 @@
                 @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="nav-icon icon ion-md-exit"></i>
                             <p>{{ __('Logout') }}</p>
                         </a>

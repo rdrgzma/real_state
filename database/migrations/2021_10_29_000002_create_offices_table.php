@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateOfficesTable extends Migration
 {
@@ -17,7 +17,20 @@ class CreateOfficesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedBigInteger('user_id');
-
+            $table->text('description');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('website');
+            $table->string('facebook');
+            $table->string('twitter');
+            $table->string('instagram');
+            $table->string('youtube');
+            $table->string('linkedin');
+            $table->string('pinterest');
+            $table->string('google');
+            $table->string('logo');
+            $table->string('cover');
             $table->timestamps();
         });
     }

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddForeignsToPropertiesTable extends Migration
 {
@@ -27,6 +27,13 @@ class AddForeignsToPropertiesTable extends Migration
                 ->on('realtors')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
+
+            $table
+                ->foreign('keys_words_id')
+                ->references('id')
+                ->on('keys_words')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
         });
     }
 
@@ -40,6 +47,7 @@ class AddForeignsToPropertiesTable extends Migration
         Schema::table('properties', function (Blueprint $table) {
             $table->dropForeign(['office_id']);
             $table->dropForeign(['realtor_id']);
+            $table->dropForeign(['keys_words_id']);
         });
     }
 }

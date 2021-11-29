@@ -1,4 +1,4 @@
-@props([
+checkbox.blade.php@props([
     'id',
     'name',
     'label',

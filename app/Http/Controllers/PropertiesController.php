@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Office;
-use App\Models\Realtor;
-use App\Models\Properties;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PropertiesStoreRequest;
 use App\Http\Requests\PropertiesUpdateRequest;
+use App\Models\Office;
+use App\Models\Properties;
+use App\Models\Realtor;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PropertiesController extends Controller
 {
@@ -22,13 +22,13 @@ class PropertiesController extends Controller
 
         $search = $request->get('search', '');
 
-        $allProperties = Properties::search($search)
+        $properties = Properties::search($search)
             ->latest()
             ->paginate(5);
 
         return view(
-            'app.all_properties.index',
-            compact('allProperties', 'search')
+            'app.properties.index',
+            compact('properties', 'search')
         );
     }
 
@@ -40,11 +40,11 @@ class PropertiesController extends Controller
     {
         $this->authorize('create', Properties::class);
 
-        $offices = Office::pluck('name', 'id');
-        $realtors = Realtor::pluck('name', 'id');
+        $offices = Office::all();
+        $realtors = Realtor::all();
 
         return view(
-            'app.all_properties.create',
+            'app.properties.create',
             compact('offices', 'realtors')
         );
     }
@@ -65,7 +65,7 @@ class PropertiesController extends Controller
         $properties = Properties::create($validated);
 
         return redirect()
-            ->route('all-properties.edit', $properties)
+            ->route('properties.edit', $properties)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -76,9 +76,8 @@ class PropertiesController extends Controller
      */
     public function show(Request $request, Properties $properties)
     {
-        $this->authorize('view', $properties);
 
-        return view('app.all_properties.show', compact('properties'));
+        return view('app.properties.show', compact('properties'));
     }
 
     /**
@@ -88,13 +87,13 @@ class PropertiesController extends Controller
      */
     public function edit(Request $request, Properties $properties)
     {
-        $this->authorize('update', $properties);
+
 
         $offices = Office::pluck('name', 'id');
         $realtors = Realtor::pluck('name', 'id');
 
         return view(
-            'app.all_properties.edit',
+            'app.properties.edit',
             compact('properties', 'offices', 'realtors')
         );
     }
@@ -106,9 +105,10 @@ class PropertiesController extends Controller
      */
     public function update(
         PropertiesUpdateRequest $request,
-        Properties $properties
-    ) {
-        $this->authorize('update', $properties);
+        Properties              $properties
+    )
+    {
+
 
         $validated = $request->validated();
         if ($request->hasFile('photo')) {
@@ -133,7 +133,7 @@ class PropertiesController extends Controller
      */
     public function destroy(Request $request, Properties $properties)
     {
-        $this->authorize('delete', $properties);
+
 
         if ($properties->photo) {
             Storage::delete($properties->photo);
@@ -142,7 +142,7 @@ class PropertiesController extends Controller
         $properties->delete();
 
         return redirect()
-            ->route('all-properties.index')
+            ->route('properties.index')
             ->withSuccess(__('crud.common.removed'));
     }
 }

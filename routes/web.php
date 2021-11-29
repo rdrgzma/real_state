@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\RealtorController;
 use App\Http\Controllers\PropertiesController;
+use App\Http\Controllers\RealtorController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,34 +34,34 @@ Route::prefix('/')
         Route::resource('clients', ClientController::class);
         Route::resource('offices', OfficeController::class);
         Route::resource('partners', PartnerController::class);
-        Route::get('all-properties', [
+        Route::get('properties', [
             PropertiesController::class,
             'index',
-        ])->name('all-properties.index');
-        Route::post('all-properties', [
+        ])->name('properties.index');
+        Route::post('properties', [
             PropertiesController::class,
             'store',
-        ])->name('all-properties.store');
-        Route::get('all-properties/create', [
+        ])->name('properties.store');
+        Route::get('properties/create', [
             PropertiesController::class,
             'create',
-        ])->name('all-properties.create');
-        Route::get('all-properties/{properties}', [
+        ])->name('properties.create');
+        Route::get('properties/{properties}', [
             PropertiesController::class,
             'show',
-        ])->name('all-properties.show');
-        Route::get('all-properties/{properties}/edit', [
+        ])->name('properties.show');
+        Route::get('properties/{properties}/edit', [
             PropertiesController::class,
             'edit',
-        ])->name('all-properties.edit');
-        Route::put('all-properties/{properties}', [
+        ])->name('properties.edit');
+        Route::put('properties/{properties}', [
             PropertiesController::class,
             'update',
-        ])->name('all-properties.update');
-        Route::delete('all-properties/{properties}', [
+        ])->name('properties.update');
+        Route::delete('properties/{properties}', [
             PropertiesController::class,
             'destroy',
-        ])->name('all-properties.destroy');
+        ])->name('properties.destroy');
 
         Route::resource('realtors', RealtorController::class);
         Route::resource('users', UserController::class);

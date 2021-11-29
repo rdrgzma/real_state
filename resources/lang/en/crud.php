@@ -61,7 +61,7 @@ return [
         ],
     ],
 
-    'all_properties' => [
+    'properties' => [
         'name' => 'All Properties',
         'index_title' => 'AllProperties List',
         'new_title' => 'New Properties',
