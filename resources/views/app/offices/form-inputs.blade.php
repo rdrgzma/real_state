@@ -7,7 +7,7 @@
             label="Name"
             value="{{ old('name', ($editing ? $office->name : '')) }}"
             maxlength="255"
-            placeholder="Name"
+            placeholder="{{ __('crud.properties.inputs.name') }}"
             required
         ></x-inputs.text>
     </x-inputs.group>
@@ -17,7 +17,7 @@
             @php $selected = old('user_id', ($editing ? $office->user_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
             @foreach($users as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
         </x-inputs.select>
     </x-inputs.group>

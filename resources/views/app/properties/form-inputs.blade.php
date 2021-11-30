@@ -2,7 +2,7 @@
 
 <div class="row">
     <x-inputs.group class="col-sm-6">
-        <x-inputs.select name="office_id" label="Office" required>
+        <x-inputs.select name="office_id" label="{{ __('crud.properties.inputs.office_id') }}" required>
             @php $selected = old('office_id', ($editing ? $properties->office_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Office</option>
             @foreach($offices as $value => $label)
@@ -257,7 +257,7 @@
         </x-inputs.select>
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
-        <x-inputs.select class="m-auto mt-3" name="construcao" label="Tipo de construcao">
+        <x-inputs.select class="m-auto mt-3" name="construcao" label="Tipo de construção">
             <option value="">Selecione</option>
             <option value="Novo">Novo</option>
             <option value="Usado">Usado</option>

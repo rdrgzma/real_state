@@ -30,7 +30,7 @@
                             href="{{ route('properties.create') }}"
                             class="btn btn-primary"
                         >
-                            <i class="icon ion-md-add"></i> @lang('crud.common.create')
+                            <i class="icon ion-md-add"></i> @lang('crud.common.new')
                         </a>
                     @endcan
                 </div>
