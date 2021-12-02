@@ -54,7 +54,7 @@ Route::prefix('/')
             PropertiesController::class,
             'edit',
         ])->name('properties.edit');
-        Route::put('properties/{properties}', [
+        Route::post('properties/{properties}', [
             PropertiesController::class,
             'update',
         ])->name('properties.update');

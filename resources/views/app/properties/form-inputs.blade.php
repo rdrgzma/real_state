@@ -4,9 +4,11 @@
     <x-inputs.group class="col-sm-6">
         <x-inputs.select name="office_id" label="{{ __('crud.properties.inputs.office_id') }}" required>
             @php $selected = old('office_id', ($editing ? $properties->office_id : '')) @endphp
+
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Office</option>
-            @foreach($offices as $value => $label)
-                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @foreach($offices as $office)
+                <option
+                    value="{{ $office->id }}" {{ $selected == $office->id ? 'selected' : '' }}>{{ $office->name }}</option>
             @endforeach
         </x-inputs.select>
     </x-inputs.group>
@@ -15,8 +17,9 @@
         <x-inputs.select name="realtor_id" label="Realtor" required>
             @php $selected = old('realtor_id', ($editing ? $properties->realtor_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Realtor</option>
-            @foreach($realtors as $value => $label)
-                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @foreach($realtors as $realtor)
+                <option
+                    value="{{ $realtor->id }}" {{ $selected == $realtor->id ? 'selected' : '' }} >{{ $realtor->name }}</option>
             @endforeach
         </x-inputs.select>
     </x-inputs.group>
@@ -38,7 +41,7 @@
             value="{{ old('logradouro', ($editing ? $properties->logradouro : '')) }}"
             maxlength="255"
             placeholder="Logradouro"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-4">
@@ -48,7 +51,7 @@
             value="{{ old('numero', ($editing ? $properties->numero : '')) }}"
             maxlength="255"
             placeholder="Número"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-4">
@@ -58,7 +61,7 @@
             value="{{ old('complemento', ($editing ? $properties->complemento : '')) }}"
             maxlength="255"
             placeholder="Complemento"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-4">
@@ -68,7 +71,7 @@
             value="{{ old('pais', ($editing ? $properties->pais : '')) }}"
             maxlength="255"
             placeholder="País"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-8">
@@ -78,7 +81,7 @@
             value="{{ old('cidade', ($editing ? $properties->cidade : '')) }}"
             maxlength="255"
             placeholder="Cidade"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-4">
@@ -88,7 +91,7 @@
             value="{{ old('estado', ($editing ? $properties->estado : '')) }}"
             maxlength="255"
             placeholder="Estado"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-4">
@@ -98,7 +101,7 @@
             value="{{ old('cep', ($editing ? $properties->cep : '')) }}"
             maxlength="255"
             placeholder="CEP"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-8">
@@ -108,7 +111,7 @@
             value="{{ old('bairro', ($editing ? $properties->bairro : '')) }}"
             maxlength="255"
             placeholder="Bairro"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-12">
@@ -118,18 +121,18 @@
             value="{{ old('descricao', ($editing ? $properties->descricao : '')) }}"
             maxlength="255"
             placeholder="Descrição"
-            required
+
         ></x-inputs.textarea>
     </x-inputs.group>
     <br/>
     <x-inputs.group class="col-sm-4">
         <x-inputs.text
-            name="valor"
+            name="preco"
             label="Valor"
-            value="{{ old('valor', ($editing ? $properties->valor : '')) }}"
+            value="{{ old('valor', ($editing ? $properties->preco : '')) }}"
             maxlength="255"
             placeholder="Valor"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-4">
@@ -139,7 +142,7 @@
             value="{{ old('area', ($editing ? $properties->area : '')) }}"
             maxlength="255"
             placeholder="Área"
-            required
+
         ></x-inputs.text>
     </x-inputs.group>
     <x-inputs.group class="col-sm-4">
@@ -154,7 +157,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6 ">
         <x-inputs.select class="my-auto mt-3" name="estado_civil" Label="Recomendação Estado Civil">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Solteiro">Solteiro</option>
             <option value="Casado">Casado</option>
             <option value="Divorciado">Divorciado</option>
@@ -164,7 +167,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="crianca" label="Crianças">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Não">Não</option>
             <option value="01">01</option>
             <option value="02">02</option>
@@ -174,7 +177,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="vaga_garagem" Label="Vagas na Garagem">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Não">Não</option>
             <option value="01">01</option>
             <option value="02">02</option>
@@ -185,7 +188,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="banheiro" label="Banheiros">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Não">Não</option>
             <option value="01">01</option>
             <option value="02">02</option>
@@ -196,7 +199,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="quartos" label="Quartos">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Não">Não</option>
             <option value="01">01</option>
             <option value="02">02</option>
@@ -207,7 +210,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="suite" label="Suites">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Não">Não</option>
             <option value="01">01</option>
             <option value="02">02</option>
@@ -218,7 +221,7 @@
 
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="proximidade_praia" label="Proximidade da praia">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Não">Não</option>
             <option value="Orla com vista">Orla com vista</option>
             <option value="Orla sem vista">Orla sem vista</option>
@@ -230,7 +233,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto m-3" name="localizacao" label="Localização">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Centros Urbanos">Centros Urbanos</option>
             <option value="Condomínio">Condomínio</option>
             <option value="Área Comercial">Área Comercial</option>
@@ -241,7 +244,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="prazo_venda" label="Prazo para Venda">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Urgente">Urgente</option>
             <option value="Durante o ano">Durante o ano</option>
             <option value="Sem previsão">Sem previsão</option>
@@ -249,18 +252,18 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="financiamento" label="Financiamento">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Já financiado">Já financiado</option>
-            <option value="À financiar">À financiaro</option>
+            <option value="À financiar">À financiar</option>
             <option value="À vista">À vista</option>
             <option value="Outro">Outro</option>
         </x-inputs.select>
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="construcao" label="Tipo de construção">
-            <option value="">Selecione</option>
-            <option value="Novo">Novo</option>
-            <option value="Usado">Usado</option>
+            <option disabled value="">Selecione</option>
+            <option value="Novo">Nova</option>
+            <option value="Usado">Usada</option>
             <option value="Lançamento 01 ano">Lançamento 01 ano</option>
             <option value="Lançamento 02 anos">Lançamento 02 anos</option>
             <option value="lançamento 03 anos ou mais">Lançamento 03 ou mais anos</option>
@@ -269,7 +272,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class=" m-auto mt-3" name="tipo_imovel" label="Tipo de Imóvel">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Casa">Casa</option>
             <option value="Apartamento">Apartamento</option>
             <option value="Cobertura">Cobertura</option>
@@ -286,7 +289,7 @@
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="tipo_permuta" label="Tipo de Permuta">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Não">Não</option>
             <option value="Carro">Carro</option>
             <option value="Imóvel">Imóvel</option>
@@ -295,27 +298,26 @@
         </x-inputs.select>
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
-        <x-inputs.select class="m-auto mt-3" name="mobilia" label="Mobilia">
-            <option value="">Selecione</option>
+        <x-inputs.select class="m-auto mt-3" name="mobilia" label="Mobília">
+            <option disabled value="">Selecione</option>
             <option value="Não">Não</option>
             <option value="Sim">Sim</option>
         </x-inputs.select>
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
         <x-inputs.select class="m-auto mt-3" name="pet" label="Pet">
-            <option value="">Selecione</option>
+            <option disabled value="">Selecione</option>
             <option value="Não">Não</option>
-            <option value="Cachorro">Cachorro</option>
-            <option value="Gato">Gato</option>
-            <option value="Outro">Outro</option>
+            <option value="Sim">Sim</option>
+
         </x-inputs.select>
     </x-inputs.group>
     <x-inputs.group class="col-sm-6">
-        <x-inputs.select class="m-auto mt-3" name="tomador_descisao" label="Recomendado para tomador de descisão">
-            <option value="">Selecione</option>
+        <x-inputs.select class="m-auto mt-3" name="tomador_decisao" label="Recomendado para tomador de descisão">
+            <option disabled value="">Selecione</option>
             <option value="Marido">Marido</option>
             <option value="Esposa">Esposa</option>
-            <option value="Companeiro(a)">Companeiro(a)</option>
+            <option value="Companeiro(a)">Companheiro(a)</option>
             <option value="Casal">Casal</option>
             <option value="Família">Família</option>
         </x-inputs.select>
@@ -323,11 +325,11 @@
 
     <x-inputs.group class="col-sm-12">
         <div
-            x-data="imageViewer('{{ $editing && $properties->photo ? \Storage::url($properties->photo) : '' }}')"
+            x-data="imageViewer('{{ $editing && $properties->foto ? \Storage::url($properties->foto) : '' }}')"
         >
             <x-inputs.partials.label
-                name="photo"
-                label="Photo"
+                name="foto"
+                label="Foto"
             ></x-inputs.partials.label
             >
             <br/>
@@ -352,13 +354,13 @@
             <div class="mt-2">
                 <input
                     type="file"
-                    name="photo"
-                    id="photo"
+                    name="foto"
+                    id="foto"
                     @change="fileChosen"
                 />
             </div>
 
-            @error('photo') @include('components.inputs.partials.error')
+            @error('foto') @include('components.inputs.partials.error')
             @enderror
         </div>
     </x-inputs.group>

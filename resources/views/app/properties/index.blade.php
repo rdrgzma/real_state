@@ -76,10 +76,10 @@
                                     {{ optional($properties->realtor)->name ?? '-'
                                     }}
                                 </td>
-                                <td>{{ $properties->name ?? '-' }}</td>
+                                <td>{{ $properties->nome ?? '-' }}</td>
                                 <td>
                                     <x-partials.thumbnail
-                                        src="{{ $properties->photo ? \Storage::url($properties->photo) : '' }}"
+                                        src="{{ $properties->foto ? \Storage::url($properties->foto) : '' }}"
                                     />
                                 </td>
                                 <td class="text-center" style="width: 134px;">
@@ -139,7 +139,7 @@
                         <tfoot>
                         <tr>
                             <td colspan="5">
-                                {!! $properties->render() !!}
+                         
                             </td>
                         </tr>
                         </tfoot>

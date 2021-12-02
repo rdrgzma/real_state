@@ -12,8 +12,8 @@
                 </h4>
 
                 <x-form
-                    method="PUT"
-                    action="{{ route('properties.update', $properties) }}"
+                    method="POST"
+                    action="{{ route('properties.update', $properties)}}"
                     has-files
                     class="mt-4"
                 >
@@ -26,14 +26,6 @@
                         >
                             <i class="icon ion-md-return-left text-primary"></i>
                             @lang('crud.common.back')
-                        </a>
-
-                        <a
-                            href="{{ route('properties.create') }}"
-                            class="btn btn-light"
-                        >
-                            <i class="icon ion-md-add text-primary"></i>
-                            @lang('crud.common.create')
                         </a>
 
                         <button type="submit" class="btn btn-primary float-right">

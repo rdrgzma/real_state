@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Office;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OfficeFactory extends Factory
@@ -23,8 +22,22 @@ class OfficeFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'user_id' => \App\Models\User::factory(),
+            'name' => $this->faker->company(),
+            'user_id' => 1,
+            'description' => $this->faker->sentence(),
+            'address' => $this->faker->address(),
+            'phone' => $this->faker->phoneNumber(),
+            'email' => $this->faker->email(),
+            'website' => $this->faker->url(),
+            'logo' => $this->faker->imageUrl(),
+            'cover' => $this->faker->imageUrl(),
+            'facebook' => $this->faker->url(),
+            'twitter' => $this->faker->url(),
+            'instagram' => $this->faker->url(),
+            'linkedin' => $this->faker->url(),
+            'youtube' => $this->faker->url(),
+            'pinterest' => $this->faker->url(),
+            'google' => $this->faker->url()
         ];
     }
 }

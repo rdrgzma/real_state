@@ -26,12 +26,24 @@
                     </div>
                     <div class="mb-4">
                         <h5>@lang('crud.properties.inputs.name')</h5>
-                        <span>{{ $properties->name ?? '-' }}</span>
+                        <span>{{ $properties->nome ?? '-' }}</span>
+                    </div>
+                    <div class="mb-4">
+                        <h5>@lang('crud.properties.inputs.address')</h5>
+                        <span>{{ $properties->logradouro ?? '-' }}</span>
+                    </div>
+                    <div class="mb-4">
+                        <h5>@lang('crud.properties.inputs.city')</h5>
+                        <span>{{ $properties->cidade ?? '-' }}</span>
+                    </div>
+                    <div class="mb-4">
+                        <h5>@lang('crud.properties.inputs.price')</h5>
+                        <span>{{ $properties->preco ?? '-' }}</span>
                     </div>
                     <div class="mb-4">
                         <h5>@lang('crud.properties.inputs.photo')</h5>
                         <x-partials.thumbnail
-                            src="{{ $properties->photo ? \Storage::url($properties->photo) : '' }}"
+                            src="{{ $properties->foto ? \Storage::url($properties->foto) : '' }}"
                             size="150"
                         />
                     </div>

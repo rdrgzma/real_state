@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
-use App\Models\Partner;
-use Illuminate\Http\Request;
-use App\Http\Requests\ClientStoreRequest;
 use App\Http\Requests\ClientUpdateRequest;
+use App\Models\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -33,27 +32,22 @@ class ClientController extends Controller
      */
     public function create(Request $request)
     {
-        $this->authorize('create', Client::class);
 
-        $partners = Partner::pluck('name', 'id');
-
-        return view('app.clients.create', compact('partners'));
+        return view('app.clients.create');
     }
 
     /**
      * @param \App\Http\Requests\ClientStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ClientStoreRequest $request)
+    public function store(Request $request)
     {
-        $this->authorize('create', Client::class);
+        $user_id = Auth::user()->id;
+        $request->merge(['user_id' => $user_id]);
 
-        $validated = $request->validated();
+        $client = Client::create($request->all());
 
-        $client = Client::create($validated);
-
-        return redirect()
-            ->route('clients.edit', $client)
+        return view('app.clients.show', compact('client'))
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -64,7 +58,7 @@ class ClientController extends Controller
      */
     public function show(Request $request, Client $client)
     {
-        $this->authorize('view', $client);
+
 
         return view('app.clients.show', compact('client'));
     }
@@ -76,11 +70,8 @@ class ClientController extends Controller
      */
     public function edit(Request $request, Client $client)
     {
-        $this->authorize('update', $client);
 
-        $partners = Partner::pluck('name', 'id');
-
-        return view('app.clients.edit', compact('client', 'partners'));
+        return view('app.clients.edit', compact('client'));
     }
 
     /**

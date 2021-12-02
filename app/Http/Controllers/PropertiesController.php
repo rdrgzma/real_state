@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PropertiesStoreRequest;
-use App\Http\Requests\PropertiesUpdateRequest;
 use App\Models\Office;
 use App\Models\Properties;
 use App\Models\Realtor;
@@ -18,16 +16,15 @@ class PropertiesController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('view-any', Properties::class);
+
 
         $search = $request->get('search', '');
 
         $properties = Properties::search($search)
             ->latest()
-            ->paginate(5);
+            ->paginate(10);
 
-        return view(
-            'app.properties.index',
+        return view('app.properties.index',
             compact('properties', 'search')
         );
     }
@@ -38,8 +35,6 @@ class PropertiesController extends Controller
      */
     public function create(Request $request)
     {
-        $this->authorize('create', Properties::class);
-
         $offices = Office::all();
         $realtors = Realtor::all();
 
@@ -53,16 +48,12 @@ class PropertiesController extends Controller
      * @param \App\Http\Requests\PropertiesStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PropertiesStoreRequest $request)
+    public function store(Request $request)
     {
-        $this->authorize('create', Properties::class);
 
-        $validated = $request->validated();
-        if ($request->hasFile('photo')) {
-            $validated['photo'] = $request->file('photo')->store('public');
-        }
-
-        $properties = Properties::create($validated);
+        $request['keys_words_id'] = 1;
+        var_dump($request->all());
+        $properties = Properties::create($request->all());
 
         return redirect()
             ->route('properties.edit', $properties)
@@ -85,16 +76,19 @@ class PropertiesController extends Controller
      * @param \App\Models\Properties $properties
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Properties $properties)
+    public function edit(Request $request, $id)
     {
 
-
-        $offices = Office::pluck('name', 'id');
-        $realtors = Realtor::pluck('name', 'id');
+        $properties = Properties::findOrFail($id);
+        $offices = Office::all();
+        $realtors = Realtor::all();
 
         return view(
-            'app.properties.edit',
-            compact('properties', 'offices', 'realtors')
+            'app.properties.edit', [
+                'properties' => $properties,
+                'offices' => $offices,
+                'realtors' => $realtors
+            ]
         );
     }
 
@@ -104,25 +98,22 @@ class PropertiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(
-        PropertiesUpdateRequest $request,
-        Properties              $properties
+        Request    $request,
+        Properties $properties
     )
     {
-
-
-        $validated = $request->validated();
-        if ($request->hasFile('photo')) {
-            if ($properties->photo) {
-                Storage::delete($properties->photo);
+        if ($request->hasFile('foto')) {
+            if ($properties->foto) {
+                Storage::delete($properties->foto);
             }
 
-            $validated['photo'] = $request->file('photo')->store('public');
+            $request['foto'] = $request->file('foto')->store('public');
         }
 
-        $properties->update($validated);
+        $properties->update($request->all());
 
         return redirect()
-            ->route('all-properties.edit', $properties)
+            ->route('properties.show', compact('properties'))
             ->withSuccess(__('crud.common.saved'));
     }
 
@@ -135,8 +126,8 @@ class PropertiesController extends Controller
     {
 
 
-        if ($properties->photo) {
-            Storage::delete($properties->photo);
+        if ($properties->foto) {
+            Storage::delete($properties->foto);
         }
 
         $properties->delete();

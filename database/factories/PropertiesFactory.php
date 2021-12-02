@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Properties;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PropertiesFactory extends Factory
@@ -23,7 +22,7 @@ class PropertiesFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'nome' => $this->faker->name,
             'office_id' => \App\Models\Office::factory(),
             'realtor_id' => \App\Models\Realtor::factory(),
         ];

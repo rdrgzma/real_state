@@ -11,12 +11,13 @@
                     @lang('crud.properties.create_title')
                 </h4>
 
-                <x-form
+                <form
                     method="POST"
                     action="{{ route('properties.store') }}"
-                    has-files
+                    enctype="multipart/form-data"
                     class="mt-4"
                 >
+                    @csrf
                     @include('app.properties.form-inputs')
 
                     <div class="mt-4">
@@ -33,7 +34,7 @@
                             @lang('crud.common.create')
                         </button>
                     </div>
-                </x-form>
+                </form>
             </div>
         </div>
     </div>
