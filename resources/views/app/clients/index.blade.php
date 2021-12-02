@@ -61,9 +61,19 @@
                         <tbody>
                         @forelse($clients as $client)
                             <tr>
+                                <td>@if ($client->type_client === 0)
+                                        Compra
+                                    @elseif ($client->type_client === 1 )
+                                        Venda
+                                    @elseif ($client->type_client === 2 )
+                                        Compra e Venda
+                                    @else
+                                        -
+                                    @endif
+                                </td>
                                 <td>{{ $client->name ?? '-' }}</td>
                                 <td>
-                                    {{ optional($client->partner)->name ?? '-' }}
+                                    {{ optional($client->user)->name ?? '-' }}
                                 </td>
                                 <td class="text-center" style="width: 134px;">
                                     <div

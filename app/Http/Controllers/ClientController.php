@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ClientUpdateRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +14,7 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('view-any', Client::class);
-
         $search = $request->get('search', '');
-
         $clients = Client::search($search)
             ->latest()
             ->paginate(5);
@@ -32,7 +28,6 @@ class ClientController extends Controller
      */
     public function create(Request $request)
     {
-
         return view('app.clients.create');
     }
 
@@ -43,7 +38,6 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $request->merge(['user_id' => Auth::user()->id]);
-       
         $client = Client::create($request->all());
 
         return view('app.clients.show', compact('client'))
@@ -75,16 +69,15 @@ class ClientController extends Controller
      * @param \App\Models\Client $client
      * @return \Illuminate\Http\Response
      */
-    public function update(ClientUpdateRequest $request, Client $client)
+    public function update(Request $request, $id)
     {
+        dd('upadate');
+        $client = Client::findOrFail($id);
 
-        $validated = $request->validated();
+        $client->update($request->all());
 
-        $client->update($validated);
-
-        return redirect()
-            ->route('clients.edit', $client)
-            ->withSuccess(__('crud.common.saved'));
+        return view('app.clients.show', compact('client'))
+            ->withSuccess(__('crud.common.updated'));
     }
 
     /**
@@ -94,10 +87,7 @@ class ClientController extends Controller
      */
     public function destroy(Request $request, Client $client)
     {
-        $this->authorize('delete', $client);
-
         $client->delete();
-
         return redirect()
             ->route('clients.index')
             ->withSuccess(__('crud.common.removed'));

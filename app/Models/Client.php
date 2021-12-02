@@ -11,12 +11,12 @@ class Client extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['id', 'name', 'partner_id'];
+    protected $fillable = ['id', 'name', 'user_id', 'type_client', 'email', 'phone', 'street', 'number', 'neighborhood', 'complement', 'city', 'state', 'zip_code', 'country', 'whatsapp', 'facebook', 'instagram', 'description', 'created_at', 'updated_at'];
 
     protected $searchableFields = ['*'];
 
-    public function partner()
+    public function user()
     {
-        return $this->belongsTo(Partner::class);
+        return $this->belongsTo(User::class);
     }
 }

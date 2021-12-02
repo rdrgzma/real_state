@@ -35,7 +35,7 @@
         <x-inputs.text
             name="street"
             label="Logradouro"
-            value="{{ old('street', ($editing ? $properties->street : '')) }}"
+            value="{{ old('street', ($editing ? $client->street : '')) }}"
             maxlength="255"
             placeholder="Logradouro"
         ></x-inputs.text>
@@ -44,7 +44,7 @@
         <x-inputs.text
             name="number"
             label="Número"
-            value="{{ old('number', ($editing ? $properties->number : '')) }}"
+            value="{{ old('number', ($editing ? $client->number : '')) }}"
             maxlength="255"
             placeholder="Número"
 
@@ -54,7 +54,7 @@
         <x-inputs.text
             name="complement"
             label="Complemento"
-            value="{{ old('complement', ($editing ? $properties->complement : '')) }}"
+            value="{{ old('complement', ($editing ? $client->complement : '')) }}"
             maxlength="255"
             placeholder="Complemento"
 
@@ -64,7 +64,7 @@
         <x-inputs.text
             name="country"
             label="País"
-            value="{{ old('country', ($editing ? $properties->country : '')) }}"
+            value="{{ old('country', ($editing ? $client->country : '')) }}"
             maxlength="255"
             placeholder="País"
 
@@ -74,7 +74,7 @@
         <x-inputs.text
             name="city"
             label="Cidade"
-            value="{{ old('city', ($editing ? $properties->city : '')) }}"
+            value="{{ old('city', ($editing ? $client->city : '')) }}"
             maxlength="255"
             placeholder="Cidade"
 
@@ -84,7 +84,7 @@
         <x-inputs.text
             name="state"
             label="Estado"
-            value="{{ old('state', ($editing ? $properties->state : '')) }}"
+            value="{{ old('state', ($editing ? $client->state : '')) }}"
             maxlength="255"
             placeholder="Estado"
 
@@ -94,7 +94,7 @@
         <x-inputs.text
             name="zip_code"
             label="CEP"
-            value="{{ old('zipcode', ($editing ? $properties->zipcode : '')) }}"
+            value="{{ old('zipcode', ($editing ? $client->zip_code : '')) }}"
             maxlength="255"
             placeholder="CEP"
 
@@ -104,7 +104,7 @@
         <x-inputs.text
             name="neighborhood"
             label="Bairro"
-            value="{{ old('neighborhood', ($editing ? $properties->neighborhood : '')) }}"
+            value="{{ old('neighborhood', ($editing ? $client->neighborhood : '')) }}"
             maxlength="255"
             placeholder="Bairro"
 
@@ -114,7 +114,7 @@
         <x-inputs.text
             name="phone"
             label="Telefone"
-            value="{{ old('telefone', ($editing ? $properties->telefone : '')) }}"
+            value="{{ old('phone', ($editing ? $client->phone : '')) }}"
             maxlength="255"
             placeholder="Telefone"
 
@@ -126,7 +126,7 @@
         <x-inputs.text
             name="whatsapp"
             label="Whatsapp"
-            value="{{ old('whatsapp', ($editing ? $properties->whatsapp : '')) }}"
+            value="{{ old('whatsapp', ($editing ? $client->whatsapp : '')) }}"
             maxlength="255"
             placeholder="Whatsapp">
 
@@ -136,7 +136,7 @@
         <x-inputs.text
             name="facebook"
             label="Facebook"
-            value="{{ old('facebook', ($editing ? $properties->facebook : '')) }}"
+            value="{{ old('facebook', ($editing ? $client->facebook : '')) }}"
             maxlength="255"
             placeholder="Facebook">
 
@@ -146,7 +146,7 @@
         <x-inputs.text
             name="instagran"
             label="Instagran"
-            value="{{ old('instagran', ($editing ? $properties->instagran : '')) }}"
+            value="{{ old('instagran', ($editing ? $client->instagran : '')) }}"
             maxlength="255"
             placeholder="Instagran">
 
@@ -156,7 +156,7 @@
         <x-inputs.textarea
             name="description"
             label="Descrição"
-            value="{{ old('descricao', ($editing ? $properties->descricao : '')) }}"
+            value="{{ old('description', ($editing ? $client->description : '')) }}"
             maxlength="255"
             placeholder="Descrição"
 
