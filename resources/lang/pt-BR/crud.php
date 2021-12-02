@@ -34,7 +34,7 @@ return [
             'email' => 'E-mail',
             'phone' => 'Telefone',
             'mobile' => 'Celular',
-            'street' => 'Endereço',
+            'street' => 'Logradouro',
             'number' => 'Número',
             'complement' => 'Complemento',
             'neighborhood' => 'Bairro',

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddForeignsToClientsTable extends Migration
 {
@@ -15,9 +15,9 @@ class AddForeignsToClientsTable extends Migration
     {
         Schema::table('clients', function (Blueprint $table) {
             $table
-                ->foreign('partner_id')
+                ->foreign('user_id')
                 ->references('id')
-                ->on('partners')
+                ->on('users')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
         });
@@ -31,7 +31,7 @@ class AddForeignsToClientsTable extends Migration
     public function down()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->dropForeign(['partner_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }

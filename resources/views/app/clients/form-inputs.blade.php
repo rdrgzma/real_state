@@ -1,21 +1,14 @@
 @php $editing = isset($client) @endphp
 
 <div class="row">
-    <x-inputs.group class="col-sm-6 form-check form-check-inline">
-        <x-inputs.partials.label for="name" name="Tipo " label="Tipo"/>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="sale" name=type_client id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                Venda
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name=type_client value="acquisition" id="flexCheckChecked"
-                   checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Compra
-            </label>
-        </div>
+
+    <x-inputs.group class="col-sm-6 ">
+        <x-inputs.select class="my-auto mt-3" name="type_client" Label="Tipo de cliente">
+            <option disabled value="">Selecione</option>
+            <option value="0">Compra</option>
+            <option value="1">Venda</option>
+            <option value="2">Compra e venda</option>
+        </x-inputs.select>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">

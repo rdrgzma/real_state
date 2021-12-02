@@ -27,6 +27,7 @@ class CreatePropertiesTable extends Migration
             $table->string('pais')->nullable();
             $table->string('numero')->nullable();
             $table->string('complemento')->nullable();
+            $table->string('bairro')->nullable();
             $table->string('preco')->nullable();
             $table->string('area')->nullable();
             $table->string('descricao')->nullable();
@@ -42,7 +43,7 @@ class CreatePropertiesTable extends Migration
             $table->enum('prazo_venda', ['Urgente', 'Durante o ano', 'Sem previsão'])->default('Urgente')->nullable();
             $table->enum('financiamento', ['Já financiado', 'À financiar', 'À vista', 'Outro'])->default('Á financiar')->nullable();
             $table->enum('construcao', ['Novo', 'Usado', 'Lançamento 01 ano', 'Lançcamento 02 anos', 'lançamento 03 anos ou mais'])->default('Novo')->nullable();
-            $table->enum('tipo_imovel', ['Casa', 'Apartamento', 'Cobertura', 'Terreno', 'Chacará', 'Sobrado', 'Flat', 'Kitnet', 'Comercial', 'Loft', 'Terreno', 'Industrial', 'Outros'])->default('Casa')->nullable();
+            $table->enum('tipo_imovel', ['Casa', 'Apartamento', 'Cobertura', 'Terreno', 'Chacará', 'Sobrado', 'Flat', 'Kitnet', 'Comercial', 'Loft', 'Industrial', 'Outros'])->default('Casa')->nullable();
             $table->enum('tipo_permuta', ['Não', 'Carro', 'Imóvel', 'Terreno', 'Outro'])->default('Não')->nullable();
             $table->enum('tipo_venda', ['Venda', 'Permuta'])->default('Venda')->nullable();
             $table->enum('mobilia', ['Não', 'Sim'])->default('Não')->nullable();

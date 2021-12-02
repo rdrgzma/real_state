@@ -42,9 +42,8 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = Auth::user()->id;
-        $request->merge(['user_id' => $user_id]);
-
+        $request->merge(['user_id' => Auth::user()->id]);
+       
         $client = Client::create($request->all());
 
         return view('app.clients.show', compact('client'))
@@ -58,8 +57,6 @@ class ClientController extends Controller
      */
     public function show(Request $request, Client $client)
     {
-
-
         return view('app.clients.show', compact('client'));
     }
 
@@ -70,7 +67,6 @@ class ClientController extends Controller
      */
     public function edit(Request $request, Client $client)
     {
-
         return view('app.clients.edit', compact('client'));
     }
 
@@ -81,7 +77,6 @@ class ClientController extends Controller
      */
     public function update(ClientUpdateRequest $request, Client $client)
     {
-        $this->authorize('update', $client);
 
         $validated = $request->validated();
 
